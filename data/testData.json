@@ -17,5 +17,25 @@
     "state": "Oregon",
     "postalCode": "03491-1143",
     "existingUserErrorMsg": "User name already exists"
+  },
+  "loggedInCheckout": {
+    "username": "Adele_Wuck222",
+    "password": "Test@XdmeOM1",
+    "category": "SPEAKERS",
+    "productName": "Bose Soundlink Bluetooth Speaker III",
+    "quantity": 2,
+    "totalPrice": "$539.98",
+    "shippingPrice": "$589.98",
+    "thankYouMsg": "Thank you for buying with Advantage"
+  },
+  "guestCheckout": {
+    "username": "Nash64519",
+    "password": "Test@r82JxP1",
+    "category": "TABLETS",
+    "productName": "HP ELITE X2 1011 G1 TABLET",
+    "quantity": 3,
+    "totalPrice": "$3,837.00",
+    "shippingPrice": "$3,887.00",
+    "thankYouMsg": "Thank you for buying with Advantage"
   }
 }

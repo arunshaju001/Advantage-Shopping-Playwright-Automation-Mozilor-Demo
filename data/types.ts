@@ -11,3 +11,11 @@ export interface UserData {
     state: string;
     postalCode: string;
 }
+
+export enum Category {
+    Speakers = 'SPEAKERS',
+    Tablets = 'TABLETS',
+    Laptops = 'LAPTOPS',
+    Mice = 'MICE',
+    Headphones = 'HEADPHONES'
+}
