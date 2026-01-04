@@ -1,0 +1,21 @@
+{
+  "invalidUser": {
+    "username": "InvalidUser123",
+    "password": "WrongPassword!",
+    "expectedError": "Incorrect user name or password."
+  },
+  "validUser": {
+    "username": "Adele_Wuck222",
+    "email": "Irma17@yahoo.com",
+    "password": "Test@XdmeOM1",
+    "firstName": "Elaina",
+    "lastName": "Wiegand",
+    "phoneNumber": "(470) 817-3278",
+    "country": "India",
+    "city": "Port Meaghan",
+    "address": "826 S Central Avenue",
+    "state": "Oregon",
+    "postalCode": "03491-1143",
+    "existingUserErrorMsg": "User name already exists"
+  }
+}
