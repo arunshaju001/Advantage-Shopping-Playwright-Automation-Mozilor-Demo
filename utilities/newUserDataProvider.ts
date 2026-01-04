@@ -19,7 +19,7 @@ export const generateRegistrationData = (): UserData => {
         country: 'India',
         city: faker.location.city().substring(0, 25),
         address: faker.location.streetAddress().substring(0, 50),
-        state: faker.location.state(),
+        state: faker.location.state().substring(0, 10),
         postalCode: faker.location.zipCode().substring(0, 10)
     };
 };

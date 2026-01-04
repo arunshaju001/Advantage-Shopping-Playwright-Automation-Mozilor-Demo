@@ -76,16 +76,13 @@ export class RegisterPage {
         await this.cityInput.fill(userData.city);
         await this.addressInput.fill(userData.address);
         await this.stateInput.fill(userData.state);
-        await this.postalCodeInput.fill(userData.postalCode);        
-    }
-
-    async registerNewUser(){
+        await this.postalCodeInput.fill(userData.postalCode); 
+        
         await this.agreeCheckbox.check();
         await this.registerButton.click();
     }
 
     async verifyExistingUserMessage(errorMsg: string) {
-        this.registerNewUser();
         await expect(this.errorMsg).toBeVisible();
         await expect(this.errorMsg).toHaveText(errorMsg);
     }

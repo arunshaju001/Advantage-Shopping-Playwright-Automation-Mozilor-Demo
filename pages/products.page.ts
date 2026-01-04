@@ -1,61 +1,66 @@
 import { Page, Locator, expect } from '@playwright/test';
 
-export class LoginPage {
+export class ProductPage {
     private readonly page: Page;
-    private readonly userAccountLink: Locator;
-    private readonly popup: Locator;
-    private readonly usernameInput: Locator;
-    private readonly passwordInput: Locator;
-    private readonly signInButton: Locator;
-    private readonly createNewAccountLink: Locator;
-    private readonly signInResultMessage: Locator;
-    private readonly closeLoginPopup: Locator;
+    private readonly searchIcon: Locator;
+    private readonly searchInput: Locator;
+    private readonly userIcon: Locator;
     private readonly usernameHolder: Locator;
+    private readonly loginPopup: Locator;
+    private readonly speakersCategory: Locator;
+    private readonly tabletsCategory: Locator;
+    private readonly laptopsCategory: Locator;
+    private readonly miceCategory: Locator;
+    private readonly headphonesCategory: Locator;
     private readonly logoutButton: Locator;
-    
 
     constructor(page: Page) {
         this.page = page;
-        this.userAccountLink = page.locator('a#menuUserLink');
-        this.popup = page.locator('.PopUp');
-        this.usernameInput = page.locator('input[name="username"]');
-        this.passwordInput = page.locator('input[name="password"]');
-        this.signInButton = page.locator('#sign_in_btn');
-        this.createNewAccountLink = page.locator('.create-new-account');
-        this.signInResultMessage = page.locator('#signInResultMessage');
-        this.closeLoginPopup = page.locator('div.closeBtn.loginPopUpCloseBtn');
+        this.searchIcon = page.locator('#menuSearch');
+        this.searchInput = page.locator('input[name="mobile_search"]');
+        this.userIcon = page.locator('a#menuUserLink');
         this.usernameHolder = page.locator('#menuUserLink > span');
+        this.loginPopup = page.locator('.PopUp');
+        this.speakersCategory = page.locator('#speakersImg');
+        this.tabletsCategory = page.locator('#tabletsImg');
+        this.laptopsCategory = page.locator('#laptopsImg');
+        this.miceCategory = page.locator('#miceImg');
+        this.headphonesCategory = page.locator('#headphonesImg');
         this.logoutButton = page.locator('#loginMiniTitle > label:nth-child(3)');
     }
 
-    async login(username: string, password: string) {
-        await this.usernameInput.waitFor({ state: 'visible' });
-        await this.usernameInput.fill(username);
-        await this.passwordInput.fill(password);
-        await this.signInButton.click();
+    /**
+     * Searches for a product using the search bar
+     * @param productName Name of the product (e.g., 'HP ELITEPAD 1000 G2')
+     */
+    async searchForProduct(productName: string) {
+        await this.searchIcon.click();
+        await this.searchInput.fill(productName);
+        await this.page.keyboard.press('Enter');
     }
 
-    async navigateToCreateAccount() {
-        await this.createNewAccountLink.click();
+    /**
+     * Navigates to a category by clicking the "Shop Now" section
+     * @param category Name of category to click
+     */
+    async selectCategory(category: 'SPEAKERS' | 'TABLETS' | 'LAPTOPS' | 'MICE' | 'HEADPHONES') {
+        switch (category) {
+            case 'SPEAKERS': await this.speakersCategory.click(); break;
+            case 'TABLETS': await this.tabletsCategory.click(); break;
+            case 'LAPTOPS': await this.laptopsCategory.click(); break;
+            case 'MICE': await this.miceCategory.click(); break;
+            case 'HEADPHONES': await this.headphonesCategory.click(); break;
+        }
     }
 
     async navigateToUserAccounts() {
-        await this.userAccountLink.click();
-        await expect(this.popup).toBeVisible();
-    }
-
-    async navigateToMainPage() {
-        await this.closeLoginPopup.click();
+        await this.userIcon.click();
+        await expect(this.loginPopup).toBeVisible();
     }
 
     async logout() {
-        await this.userAccountLink.click();
+        await this.userIcon.click();
         await this.logoutButton.click();
-    }
-
-    async verifyInvalidLoginMessage(errorMsg: string) {
-        await expect(this.signInResultMessage).toBeVisible();
-        await expect(this.signInResultMessage).toHaveText(errorMsg);
     }
 
     async verifyUserLoggedIn(username: string) {
