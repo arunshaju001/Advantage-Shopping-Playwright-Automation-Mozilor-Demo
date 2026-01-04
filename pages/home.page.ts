@@ -1,11 +1,13 @@
 import { Page, Locator, expect } from '@playwright/test';
+import { Category } from '../data/types';
 
-export class ProductPage {
+export class HomePage {
     private readonly page: Page;
     private readonly searchIcon: Locator;
     private readonly searchInput: Locator;
     private readonly userIcon: Locator;
     private readonly usernameHolder: Locator;
+    private readonly cartIcon: Locator;
     private readonly loginPopup: Locator;
     private readonly speakersCategory: Locator;
     private readonly tabletsCategory: Locator;
@@ -13,14 +15,17 @@ export class ProductPage {
     private readonly miceCategory: Locator;
     private readonly headphonesCategory: Locator;
     private readonly logoutButton: Locator;
+    private readonly homeIcon: Locator;
 
     constructor(page: Page) {
         this.page = page;
+        this.homeIcon = page.locator('body > header > nav > div > a');
         this.searchIcon = page.locator('#menuSearch');
         this.searchInput = page.locator('input[name="mobile_search"]');
         this.userIcon = page.locator('a#menuUserLink');
         this.usernameHolder = page.locator('#menuUserLink > span');
         this.loginPopup = page.locator('.PopUp');
+        this.cartIcon = page.locator('a#shoppingCartLink');
         this.speakersCategory = page.locator('#speakersImg');
         this.tabletsCategory = page.locator('#tabletsImg');
         this.laptopsCategory = page.locator('#laptopsImg');
@@ -43,19 +48,27 @@ export class ProductPage {
      * Navigates to a category by clicking the "Shop Now" section
      * @param category Name of category to click
      */
-    async selectCategory(category: 'SPEAKERS' | 'TABLETS' | 'LAPTOPS' | 'MICE' | 'HEADPHONES') {
+    async selectCategory(category: Category) {
         switch (category) {
-            case 'SPEAKERS': await this.speakersCategory.click(); break;
-            case 'TABLETS': await this.tabletsCategory.click(); break;
-            case 'LAPTOPS': await this.laptopsCategory.click(); break;
-            case 'MICE': await this.miceCategory.click(); break;
-            case 'HEADPHONES': await this.headphonesCategory.click(); break;
+            case Category.Speakers: await this.speakersCategory.click(); break;
+            case Category.Tablets: await this.tabletsCategory.click(); break;
+            case Category.Laptops: await this.laptopsCategory.click(); break;
+            case Category.Mice: await this.miceCategory.click(); break;
+            case Category.Headphones: await this.headphonesCategory.click(); break;
         }
     }
 
     async navigateToUserAccounts() {
         await this.userIcon.click();
         await expect(this.loginPopup).toBeVisible();
+    }
+
+    async navigateToCheckout() {
+        await this.cartIcon.click();
+    }
+
+    async navigateToHomePage() {
+        await this.homeIcon.click();
     }
 
     async logout() {
