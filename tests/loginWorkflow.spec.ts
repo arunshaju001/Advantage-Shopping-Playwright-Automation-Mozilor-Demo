@@ -1,29 +1,29 @@
 import { test, expect } from '@playwright/test';
 import { RegisterPage } from '../pages/register.page';
 import { LoginPage } from '../pages/login.page';
-import { ProductPage } from '../pages/products.page';
+import { HomePage } from '../pages/home.page';
 import * as testData from '../data/testData.json';
 import { generateRegistrationData } from '../utilities/newUserDataProvider';
 
 test.describe('User Login and Registration Flows', () => {
   
   let loginPage: LoginPage;
-  let productPage: ProductPage;
+  let homePage: HomePage;
 
   test.beforeEach(async ({ page }) => {
 
     loginPage = new LoginPage(page);
-    productPage = new ProductPage(page);
+    homePage = new HomePage(page);
     await page.goto('/');
-    await productPage.navigateToUserAccounts();
+    await homePage.navigateToUserAccounts();
   });   
 
 	test('Validate valid user can login sucessfully', async () => {    
 
     await loginPage.login( testData.validUser.username, testData.validUser.password);
-    await productPage.verifyUserLoggedIn(testData.validUser.username);
-		await productPage.logout();
-		await productPage.verifyUserLoggedOut(testData.validUser.username);
+    await homePage.verifyUserLoggedIn(testData.validUser.username);
+		await homePage.logout();
+		await homePage.verifyUserLoggedOut(testData.validUser.username);
 
   });
 
@@ -43,7 +43,7 @@ test.describe('User Login and Registration Flows', () => {
 		await expect(page).toHaveURL(/.*register/);
     let userData = generateRegistrationData();
 		await registrationPage.fillRegistrationForm(userData);
-    await productPage.verifyUserLoggedIn(userData.username);
+    await homePage.verifyUserLoggedIn(userData.username);
   });
 
 	test('Validate exisiting user cannot register again', async ({ page }) => {
