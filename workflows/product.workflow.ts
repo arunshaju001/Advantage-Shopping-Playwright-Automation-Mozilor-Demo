@@ -61,4 +61,10 @@ export class ProductWorkflow {
     async orderPageLogin(data: any){
         await this.orderpage.orderPageLogin(data.username, data.password);
     }
+
+    async clearCartAfterTest(data: any){
+        // await this.homePage.navigateToUserAccounts();
+        // await this.loginPage.login( data.username, data.password);
+        await this.cartPage.clearCheckout();
+    }
 }
