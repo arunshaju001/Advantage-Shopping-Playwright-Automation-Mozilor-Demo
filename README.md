@@ -64,9 +64,9 @@ The project follows a Task-Based Page Object Model, separating concerns across f
 
 ## Installation
 
-1. Clone the repo using below URL
+1. Clone the [Advantage-Shopping-Playwright-Automation](https://github.com/arunshaju001/Advantage-Shopping-Playwright-Automation-Mozilor-Demo) repository:
    ```sh
-   git clone [Advantage-Shopping-Playwright-Automation-Mozilor-Demo](https://github.com/arunshaju001/Advantage-Shopping-Playwright-Automation-Mozilor-Demo.git)
+   git clone https://github.com/arunshaju001/Advantage-Shopping-Playwright-Automation-Mozilor-Demo.git
    ```
 2. Navigate to folder:
     ```sh
