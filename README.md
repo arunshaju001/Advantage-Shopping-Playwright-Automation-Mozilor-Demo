@@ -132,6 +132,6 @@ The project follows a Task-Based Page Object Model, separating concerns across f
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[overall-report-screenshot]: Images/OverallReport.PNG
-[detailed-report-screenshot]:Images/DetailedReport.PNG
-[failure-report-screenshot]: Images/FailureReport.PNG
+[overall-report-screenshot]: Images/OverallReport.png
+[detailed-report-screenshot]:Images/DetailedReport.png
+[failure-report-screenshot]: Images/FailureReport.png
