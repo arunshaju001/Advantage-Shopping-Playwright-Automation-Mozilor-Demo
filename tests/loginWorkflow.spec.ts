@@ -18,7 +18,7 @@ test.describe('User Login and Registration Flows', () => {
     await homePage.navigateToUserAccounts();
   });   
 
-	test('Validate valid user can login sucessfully', async () => {    
+	test('Validate valid user can login sucessfully @smoke', async () => {    
 
     await loginPage.login( testData.validUser.username, testData.validUser.password);
     await homePage.verifyUserLoggedIn(testData.validUser.username);
